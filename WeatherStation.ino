@@ -17,11 +17,13 @@ const String PASS = "etnoastro";
 
 // Server credentials.
 
-const String API = "ZB65A697QJBXE6M5";
+const String API = "8KNDK9GKX7R97R02";
 const String HOST = "api.thingspeak.com";
 const String PORT = "80";
 const String temperatureField = "field1";
 const String humidityField = "field2";
+
+const int postEverySeconds = 30;
 
 /* Data from sensor is saved to this array.
     data[0] = humidity (integer)
@@ -67,7 +69,7 @@ void loop() {
   sendCommand("AT+CIPSEND=0," + String(request.length() + 4), 4, ">");
 
   esp8266.println(request);
-  delay(30000);
+  delay(postEverySeconds * 1000);
   countTrueCommand++;
 
   // Close connection.
